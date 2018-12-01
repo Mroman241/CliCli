@@ -1,3 +1,8 @@
+<OptionButton@Button>:
+    size_hint: (None,None)
+    width: 200
+    height: 40
+
 <CliClicker>:
     orientation: "vertical"
     id: cliclicker
@@ -164,6 +169,59 @@
         
         TabbedPanelItem:
             text: "Menu"
+
+            FloatLayout:
+                canvas:
+                    Color:
+                        rgba: .7,.7,.9,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+                OptionButton:
+                    text: 'Option 1'
+                    pos_hint: {'right':.63, 'top':.9}
+
+                OptionButton:
+                    text: 'Option 1'
+                    pos_hint: {'right':.63, 'top':.8}
+
+                GridLayout:
+                    cols: 6
+                    size_hint: (None, None)
+                    pos_hint: {'top': .7, 'right':.69}
+                    height: 40
+                    width: 300
+
+                    canvas:
+                        Color:
+                            rgba: .9,.9,.9,1
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    
+                    CheckBox:
+                        group: "bg_color"
+                        value: root.blue
+                        color: 0,0,0,1
+                    Label:
+                        text: 'blue'
+                        color: 0,0,0,1
+                    CheckBox:
+                        group: "bg_color"
+                        value: root.red
+                        color: 0,0,0,1
+                    Label:
+                        text: 'red'
+                        color: 0,0,0,1
+                    CheckBox:
+                        group: "bg_color"
+                        value: root.green
+                        color: 0,0,0,1
+                    Label:
+                        text: 'green'
+                        color: 0,0,0,1
+
 
 
 
