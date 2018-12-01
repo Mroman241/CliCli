@@ -1,0 +1,2 @@
+# CliCli
+A clicker game!
