@@ -2,9 +2,14 @@ import kivy
 
 from kivy.uix.boxlayout import BoxLayout
 from kivy.app import App
+from kivy.properties import ObjectProperty
 
 class CliClicker(BoxLayout):
-    pass
+
+    blue = ObjectProperty(True)
+    red = ObjectProperty(False)
+    green = ObjectProperty(False)
+
 
 class MainApp(App):
 
