@@ -1,3 +1,5 @@
+# from kivy.uix.checkbox import CheckBox
+
 <OptionButton@Button>:
     size_hint: (None,None)
     width: 200
@@ -6,9 +8,12 @@
 <CliClicker>:
     orientation: "vertical"
     id: cliclicker
+    menuoptions: menuopts
+
     TabbedPanel:
         do_default_tab: False
         height: 200
+        id: tabs
 
         TabbedPanelItem:
             text: "CliClicker"
@@ -169,8 +174,10 @@
         
         TabbedPanelItem:
             text: "Menu"
+            id: menu
 
             FloatLayout:
+                id: menuopts
                 canvas:
                     Color:
                         rgba: .7,.7,.9,1
@@ -203,6 +210,7 @@
                     CheckBox:
                         group: "bg_color"
                         value: root.blue
+                        on_active: cliclicker.show_value(self, self.value, self.active)
                         color: 0,0,0,1
                     Label:
                         text: 'blue'
@@ -210,6 +218,7 @@
                     CheckBox:
                         group: "bg_color"
                         value: root.red
+                        on_active: cliclicker.show_value(self, self.value, self.active)
                         color: 0,0,0,1
                     Label:
                         text: 'red'
@@ -217,10 +226,26 @@
                     CheckBox:
                         group: "bg_color"
                         value: root.green
+                        on_active: cliclicker.show_value(self, self.value, self.active)  
                         color: 0,0,0,1
                     Label:
                         text: 'green'
                         color: 0,0,0,1
+
+                Button:
+                    text: 'Apply'
+                    size_hint: (None, None)
+                    pos_hint: {'top': .6, 'right':.6}
+                    height: 40
+                    width: 150
+                    on_release: cliclicker.bg_change()
+                
+                Button:
+                    text: 'Exit'
+                    size_hint: (None, None)
+                    pos_hint: {'top': .2, 'right':.6}
+                    height: 40
+                    width: 150
 
 
 
