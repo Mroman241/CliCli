@@ -66,6 +66,10 @@ class CliClicker(BoxLayout):
     auto_cc3 = 0
     auto_cc4 = 0
 
+    def __init__(self, **kwargs):            # reserve __init__ to prevent errors
+        Clock.schedule_interval(self.update, 2)
+        print('I have been updated')
+
     def bg_change(self):
         # Change background according value set in radio buttons
         if self.blue:
@@ -148,13 +152,8 @@ class CliClicker(BoxLayout):
 
         self.reset_boost = self.score * 0.01
 
-        self.update()
-
-    def update(self):
+    def update(self, dt=0):
         self.score += (self.auto_cc1*0.001)+(self.auto_cc2*0.01)+(self.auto_cc3*0.1)+(self.auto_cc4*1)
-        print('I have been updated')
-
-    #Clock.schedule_interval(update, 2)
 
 
 
@@ -164,5 +163,7 @@ class MainApp(App):
     def build(self):
         return CliClicker()
 
+
 app = MainApp()
+# CliClicker.app_start
 app.run()
