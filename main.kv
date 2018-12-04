@@ -1,5 +1,3 @@
-# from kivy.uix.checkbox import CheckBox
-
 <OptionButton@Button>:
     size_hint: (None,None)
     width: 200
@@ -9,6 +7,24 @@
     orientation: "vertical"
     id: cliclicker
     menuoptions: menuopts
+    clitab: cliclickertab
+    buy_input: buy_input_id
+    clicli: clicli_id
+
+    blue: radio_blue.active
+    red: radio_red.active
+    green: radio_green.active
+
+    description: ''
+    item_name: ''
+    price: 0
+
+    score: 0
+
+    reset_boost: 0 
+
+    clicol: [.1, .1, .1, 1]
+    col: (.7, .7, .9, 1)
 
     TabbedPanel:
         do_default_tab: False
@@ -18,27 +34,31 @@
         TabbedPanelItem:
             text: "CliClicker"
             FloatLayout:
-
+                id: cliclickertab
                 canvas:
                     Color:
-                        rgba: (.7,.7,.9,1)
+                        rgba: cliclicker.col
                     Rectangle:
                         pos: self.pos
                         size: self.size
 
                 Label:
                     size_hint: (None, None)
-                    id: score
+                    id: score_label
                     pos_hint: {"right":.98, "top": 1}
                     color: 0,0,0,1
-                    text: ("Placeholder" + " CC")
+                    text: (str(round(cliclicker.score,1)) + " CC")
         
                 Button:
+                    id: clicli_id
                     size_hint: (None, None)
                     width: 200
                     height: 100
                     pos_hint: {"right":.62, "top":.6}
                     text: "Click!"
+                    on_press: cliclicker.click()
+                    background_normal: './Butt-texture.png'
+                    background_color: cliclicker.clicol
                     font_size: 50
 
         TabbedPanelItem:
@@ -53,25 +73,32 @@
                     size_hint: 0.4, 1
 
                     Button:
-                        text: 'Item 1'
+                        text: 'Button power'
+                        on_press: cliclicker.show_desc(self.text)
                     Button:
-                        text: 'Item 1'
+                        text: 'Percent increase'
+                        on_press: cliclicker.show_desc(self.text)
                     Button:
-                        text: 'Item 1'
+                        text: 'Button shine'
+                        on_press: cliclicker.show_desc(self.text)
                     Button:
-                        text: 'Item 1'
+                        text: 'Auto click I'
+                        on_press: cliclicker.show_desc(self.text)
                     Button:
-                        text: 'Item 1'
+                        text: 'Auto click II'
+                        on_press: cliclicker.show_desc(self.text)
                     Button:
-                        text: 'Item 1'
+                        text: 'Auto click III'
+                        on_press: cliclicker.show_desc(self.text)
                     Button:
-                        text: 'Item 1'
+                        text: 'Auto click IV'
+                        on_press: cliclicker.show_desc(self.text)
 
                 FloatLayout:
 
                     canvas:
                         Color:
-                            rgba: .7,.7,.9,1
+                            rgba: cliclicker.col
                         Rectangle:
                             pos: self.pos
                             size: self.size
@@ -81,7 +108,7 @@
                         id: score
                         pos_hint: {"right":.98, "top": 1}
                         color: 0,0,0,1
-                        text: ("Placeholder" + " CC")
+                        text: (str(round(cliclicker.score,1)) + " CC")
 
                     BoxLayout:
                         orientation: 'horizontal'
@@ -92,21 +119,24 @@
 
                         Button:
                             text: 'Buy 1'
+                            on_release: cliclicker.buy_upgrade('1')
                         Button:
                             text: 'Buy 10'
+                            on_release: cliclicker.buy_upgrade('10')
                         Button:
                             text: 'Buy Input'
+                            on_release: cliclicker.buy_upgrade(cliclicker.buy_input.text)
 
                     Label:
                         size_hint: (None, None)
-                        text: 'price'
+                        text: ('Price: ' + str(cliclicker.price))
                         font_size: 15
                         pos_hint: {'top': .35, 'right':.62}
                         color: 0,0,0,1
 
                     Label:
                         size_hint: (None, None)
-                        text: 'Item name Long name'
+                        text: cliclicker.item_name
                         width: 300
                         halign: 'left'
                         valign: 'top'
@@ -118,7 +148,7 @@
                         size_hint: (None, None)
                         width: 300
                         height: 200
-                        text: 'Item Description hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh'
+                        text: cliclicker.description
                         halign: 'left'
                         valign: 'top'
                         text_size: self.size
@@ -126,6 +156,7 @@
                         pos_hint: {'top':.8, 'right':.55}
                         color: 0,0,0,1
                     TextInput:
+                        id: buy_input_id
                         size_hint: (None, None)
                         width: 100
                         height: 30
@@ -140,13 +171,13 @@
             FloatLayout:
                 canvas:
                     Color:
-                        rgba: .7,.7,.9,1
+                        rgba: cliclicker.col
                     Rectangle:
                         pos: self.pos
                         size: self.size
                 Label:
                     color: 0,0,0,1
-                    text: ('Resetting will give you a ' + 'xx' + '% boost.')
+                    text: ('Resetting will give you a ' + str(cliclicker.reset_boost) + '% boost.')
                     font_size: 20
                     text_size: self.size
                     halign: 'center'
@@ -163,13 +194,14 @@
                     font_size: 20
                     width: 200
                     height: 80
+                    on_press: cliclicker.reset_score()
                 
                 Label:
                     size_hint: (None, None)
                     id: score
                     pos_hint: {"right":.98, "top": 1}
                     color: 0,0,0,1
-                    text: ("Placeholder" + " CC")
+                    text: (str(round(cliclicker.score,1)) + " CC")
 
         
         TabbedPanelItem:
@@ -180,7 +212,7 @@
                 id: menuopts
                 canvas:
                     Color:
-                        rgba: .7,.7,.9,1
+                        rgba: cliclicker.col
                     Rectangle:
                         pos: self.pos
                         size: self.size
@@ -209,24 +241,21 @@
                     
                     CheckBox:
                         group: "bg_color"
-                        value: root.blue
-                        on_active: cliclicker.show_value(self, self.value, self.active)
+                        id: radio_blue
                         color: 0,0,0,1
                     Label:
                         text: 'blue'
                         color: 0,0,0,1
                     CheckBox:
                         group: "bg_color"
-                        value: root.red
-                        on_active: cliclicker.show_value(self, self.value, self.active)
+                        id: radio_red
                         color: 0,0,0,1
                     Label:
                         text: 'red'
                         color: 0,0,0,1
                     CheckBox:
                         group: "bg_color"
-                        value: root.green
-                        on_active: cliclicker.show_value(self, self.value, self.active)  
+                        id: radio_green  
                         color: 0,0,0,1
                     Label:
                         text: 'green'
