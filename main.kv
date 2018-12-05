@@ -56,7 +56,7 @@
                     pos_hint: {"right":.62, "top":.6}
                     text: "Click!"
                     on_press: cliclicker.click()
-                    background_normal: './Butt-texture.png'
+                    background_normal: './Btn-texture.png'
                     background_color: cliclicker.clicol
                     font_size: 50
 
@@ -266,6 +266,7 @@
                     text: 'Exit'
                     size_hint: (.1875, .0666)
                     pos_hint: {'top': .2, 'right':.6}
+                    on_release: cliclicker.exit_app()
 
 
 

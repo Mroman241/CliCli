@@ -1,18 +1,15 @@
-import kivy
-
 from kivy.uix.boxlayout import BoxLayout
 from kivy.app import App
 from kivy.properties import ObjectProperty
 from kivy.uix.label import Label
-from kivy.properties import BooleanProperty
-from kivy.graphics import *
 from random import randint, random
-from time import *
 from kivy.clock import Clock
-from functools import partial
 
 
 class CliClicker(BoxLayout):
+
+    # Blizie info v README.md
+    # Closer info in README.md
 
     # CLICK TAB VARIABLES
     clicol = ObjectProperty()
@@ -94,7 +91,7 @@ class CliClicker(BoxLayout):
 
     def exit_app(self):
         # Exit the application and close the window
-        pass
+        quit()
 
     def reset_score(self):
         # Take current score, divide it, add it to clicks and set it to 0
@@ -110,28 +107,34 @@ class CliClicker(BoxLayout):
 
     def buy_upgrade(self, amount):
         # Take value Buy 1 -> value 1, Buy 10 -> value 10, buy input -> value = TextInput
+        # Check score, if enough, buy as much upgrades as possible
         try:
             upgrade_amount = int(amount)
         except Exception:
             print('ERROR: Wrong value entered')
             return None
-        print('Upgrading', self.current_button, 'by amount: ', upgrade_amount, 'of price:', self.prices[self.current_button], 'with score:', self.score)
-        for i in range(upgrade_amount):
-            if self.prices[self.current_button] < self.score:
-                self.score -= self.prices[self.current_button]
-                self.prices[self.current_button] = round(self.prices[self.current_button]*1.5, 2)
-                self.price = self.prices[self.current_button]
-                print('Upgrade bought')
-                self.upgrade_parameters[self.current_button] += 1
-                print('Upgraded parameter of:', self.current_button, 'to', self.upgrade_parameters[self.current_button])
-                if self.current_button == 'Button shine':
-                    for i in range(3):
-                        self.clicol[i] += self.upgrade_parameters['Button shine'] * 0.05
-                    print(self.clicol)
+        try:
+            print('Upgrading', self.current_button, 'by amount: ', upgrade_amount, 'of price:', self.prices[self.current_button], 'with score:', self.score)
 
-                    self.clicli.background_color = self.clicol
-            else:
-                print('ERROR: Not enough score')
+            for i in range(upgrade_amount):
+                if self.prices[self.current_button] < self.score:
+                    self.score -= self.prices[self.current_button]
+                    self.prices[self.current_button] = round(self.prices[self.current_button] * 1.5, 2)
+                    self.price = self.prices[self.current_button]
+                    print('Upgrade bought')
+                    self.upgrade_parameters[self.current_button] += 1
+                    print('Upgraded parameter of:', self.current_button, 'to',
+                          self.upgrade_parameters[self.current_button])
+                    if self.current_button == 'Button shine':
+                        for i in range(3):
+                            self.clicol[i] += self.upgrade_parameters['Button shine'] * 0.05
+                        print(self.clicol)
+
+                        self.clicli.background_color = self.clicol
+                else:
+                    print('ERROR: Not enough score')
+        except KeyError:
+            print('Buy clicked without choosing item')
         # Add specific bonus to clicks
         self.button_power = self.upgrade_parameters['Button power']
         self.percent_increase = self.upgrade_parameters['Percent increase']
@@ -140,8 +143,6 @@ class CliClicker(BoxLayout):
         self.auto_cc2 = self.upgrade_parameters['Auto click II']
         self.auto_cc3 = self.upgrade_parameters['Auto click III']
         self.auto_cc4 = self.upgrade_parameters['Auto click IV']
-
-
 
     def click(self):
         print('I have been clicked, my bonus is:', (self.button_power+self.button_shine*0.5))
@@ -156,9 +157,8 @@ class CliClicker(BoxLayout):
         self.reset_boost = self.score * 0.01
 
     def update(self, _):
+        # Auto click functionality
         self.score += (self.auto_cc1*1)+(self.auto_cc2*10)+(self.auto_cc3*100)+(self.auto_cc4*1000) + (((self.auto_cc1*1)+(self.auto_cc2*10)+(self.auto_cc3*100)+(self.auto_cc4*1000))*(0.05*self.percent_increase))
-
-
 
 
 class MainApp(App):
