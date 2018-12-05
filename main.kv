@@ -1,5 +1,5 @@
 <OptionButton@Button>:
-    size_hint: (None,None)
+    size_hint: (.25, .0666)
     width: 200
     height: 40
 
@@ -39,6 +39,7 @@
                     Color:
                         rgba: cliclicker.col
                     Rectangle:
+                        source: './BCK2.png'
                         pos: self.pos
                         size: self.size
 
@@ -51,9 +52,7 @@
         
                 Button:
                     id: clicli_id
-                    size_hint: (None, None)
-                    width: 200
-                    height: 100
+                    size_hint: (.25, .1666)
                     pos_hint: {"right":.62, "top":.6}
                     text: "Click!"
                     on_press: cliclicker.click()
@@ -100,6 +99,7 @@
                         Color:
                             rgba: cliclicker.col
                         Rectangle:
+                            source: './BCK1.png'
                             pos: self.pos
                             size: self.size
                     
@@ -112,10 +112,8 @@
 
                     BoxLayout:
                         orientation: 'horizontal'
-                        size_hint: (None, None)
-                        pos_hint: {'top': .2, 'right':.79}
-                        height: 30
-                        width: 300
+                        size_hint: (.625, .05)
+                        pos_hint: {'top': .2, 'right':.82}
 
                         Button:
                             text: 'Buy 1'
@@ -128,16 +126,15 @@
                             on_release: cliclicker.buy_upgrade(cliclicker.buy_input.text)
 
                     Label:
-                        size_hint: (None, None)
+                        size_hint: (.125, .05)
                         text: ('Price: ' + str(cliclicker.price))
                         font_size: 15
-                        pos_hint: {'top': .35, 'right':.62}
+                        pos_hint: {'top': .35, 'right':.57}
                         color: 0,0,0,1
 
                     Label:
-                        size_hint: (None, None)
+                        size_hint: (.625, .15)
                         text: cliclicker.item_name
-                        width: 300
                         halign: 'left'
                         valign: 'top'
                         font_size: 30
@@ -145,22 +142,20 @@
                         color: 0,0,0,1
 
                     Label:
-                        size_hint: (None, None)
-                        width: 300
-                        height: 200
+                        size_hint: (.375, .333)
                         text: cliclicker.description
                         halign: 'left'
                         valign: 'top'
                         text_size: self.size
                         font_size: 15
-                        pos_hint: {'top':.8, 'right':.55}
+                        pos_hint: {'top':.8, 'right':.45}
                         color: 0,0,0,1
                     TextInput:
                         id: buy_input_id
-                        size_hint: (None, None)
+                        size_hint: (.125, .05)
                         width: 100
                         height: 30
-                        pos_hint: {'top': .13, 'right':.615}
+                        pos_hint: {'top': .13, 'right':.57}
 
 
 
@@ -173,6 +168,7 @@
                     Color:
                         rgba: cliclicker.col
                     Rectangle:
+                        source: './BCK4.png'
                         pos: self.pos
                         size: self.size
                 Label:
@@ -182,14 +178,14 @@
                     text_size: self.size
                     halign: 'center'
                     valign: 'top'
-                    size_hint: (None,None)
+                    size_hint: (.375,.333)
                     pos_hint: {'right':.7, 'top':.8}
                     width: 300
                     height: 200
 
                 Button:
                     text: 'Reset'
-                    size_hint: (None,None)
+                    size_hint: (.25,.133)
                     pos_hint: {'right':.63, 'top':.4}
                     font_size: 20
                     width: 200
@@ -214,6 +210,7 @@
                     Color:
                         rgba: cliclicker.col
                     Rectangle:
+                        source: './BCK3.png'
                         pos: self.pos
                         size: self.size
 
@@ -227,10 +224,8 @@
 
                 GridLayout:
                     cols: 6
-                    size_hint: (None, None)
+                    size_hint: (.375, .0666)
                     pos_hint: {'top': .7, 'right':.69}
-                    height: 40
-                    width: 300
 
                     canvas:
                         Color:
@@ -263,18 +258,14 @@
 
                 Button:
                     text: 'Apply'
-                    size_hint: (None, None)
+                    size_hint: (.1875, .0666)
                     pos_hint: {'top': .6, 'right':.6}
-                    height: 40
-                    width: 150
                     on_release: cliclicker.bg_change()
                 
                 Button:
                     text: 'Exit'
-                    size_hint: (None, None)
+                    size_hint: (.1875, .0666)
                     pos_hint: {'top': .2, 'right':.6}
-                    height: 40
-                    width: 150
 
 
 

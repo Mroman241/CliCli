@@ -34,13 +34,13 @@ class CliClicker(BoxLayout):
     price = ObjectProperty()
     current_button = ''
 
-    descriptions = {'Button power': 'A placeholder description for Button power',
-                    'Percent increase': 'A placeholder description for Percent increase',
-                    'Button shine': 'A placeholder description for Button shine',
-                    'Auto click I': 'A placeholder description for Auto click I',
-                    'Auto click II': 'A placeholder description for Auto click II',
-                    'Auto click III': 'A placeholder description for Auto click III',
-                    'Auto click IV': 'A placeholder description for Auto click IV'}
+    descriptions = {'Button power': 'Increases the power you put into the button click',
+                    'Percent increase': 'Increases all gains by a certain percent',
+                    'Button shine': 'Makes the button shinier! (Also gives you a bonus to your clicks if shiny buttons are not enough)',
+                    'Auto click I': 'Gives you a click each second',
+                    'Auto click II': 'Gives you ten clicks each second',
+                    'Auto click III': 'Gives you hundred clicks each second',
+                    'Auto click IV': 'Gives you all the clicks you will ever need (it gives you 1000 clicks per second)'}
 
     prices = {'Button power': 10,
               'Percent increase': 100,
@@ -66,8 +66,9 @@ class CliClicker(BoxLayout):
     auto_cc3 = 0
     auto_cc4 = 0
 
-    def __init__(self, **kwargs):            # reserve __init__ to prevent errors
-        Clock.schedule_interval(self.update, 2)
+    def __init__(self):
+        super(CliClicker, self).__init__()
+        Clock.schedule_interval(self.update, 1)
         print('I have been updated')
 
     def bg_change(self):
@@ -123,6 +124,12 @@ class CliClicker(BoxLayout):
                 print('Upgrade bought')
                 self.upgrade_parameters[self.current_button] += 1
                 print('Upgraded parameter of:', self.current_button, 'to', self.upgrade_parameters[self.current_button])
+                if self.current_button == 'Button shine':
+                    for i in range(3):
+                        self.clicol[i] += self.upgrade_parameters['Button shine'] * 0.05
+                    print(self.clicol)
+
+                    self.clicli.background_color = self.clicol
             else:
                 print('ERROR: Not enough score')
         # Add specific bonus to clicks
@@ -134,16 +141,12 @@ class CliClicker(BoxLayout):
         self.auto_cc3 = self.upgrade_parameters['Auto click III']
         self.auto_cc4 = self.upgrade_parameters['Auto click IV']
 
-        for i in range(3):
-            self.clicol[i] += self.upgrade_parameters['Button shine']*0.05
-        print(self.clicol)
 
-        self.clicli.background_color = self.clicol
 
     def click(self):
-        print('I have been clicked, my bonus is:', (self.button_power*0.5))
+        print('I have been clicked, my bonus is:', (self.button_power+self.button_shine*0.5))
         # Add a random value as base score
-        addition = round((randint(1, 100)/100) * (1 + self.reset_bonus) + (self.button_power*0.5), 2) + 500
+        addition = round((randint(1, 100)/100) * (1 + self.reset_bonus) + (self.button_power+self.button_shine*0.5), 2)
         # Get all added values and add it to score
         self.score += round(addition, 1)+(round(addition, 1)*(0.05*self.percent_increase))
         # Spawn a label at random coords
@@ -152,8 +155,8 @@ class CliClicker(BoxLayout):
 
         self.reset_boost = self.score * 0.01
 
-    def update(self, dt=0):
-        self.score += (self.auto_cc1*0.001)+(self.auto_cc2*0.01)+(self.auto_cc3*0.1)+(self.auto_cc4*1)
+    def update(self, _):
+        self.score += (self.auto_cc1*1)+(self.auto_cc2*10)+(self.auto_cc3*100)+(self.auto_cc4*1000) + (((self.auto_cc1*1)+(self.auto_cc2*10)+(self.auto_cc3*100)+(self.auto_cc4*1000))*(0.05*self.percent_increase))
 
 
 
@@ -165,5 +168,4 @@ class MainApp(App):
 
 
 app = MainApp()
-# CliClicker.app_start
 app.run()
