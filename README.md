@@ -3,22 +3,22 @@ A clicker game!
 
 Features:
 
-Always visible fixed menu -> implemented with TabbedPanel
-4 pages/tabs included all have different purpose
-Exit button in menu tab closes the application
+- Always visible fixed menu -> implemented with TabbedPanel
+- 4 pages/tabs included all have different purpose
+- Exit button in menu tab closes the application
 
 Required elements:
 
-label -> used throughout
-button -> -||-
-text input -> implememnted as a custom buy amount in the upgrade menu (input checked for invalid 	      input)
-image -> implemented as background of each tab
+- label -> used throughout
+- button -> -||-
+- text input -> implememnted as a custom buy amount in the upgrade menu (input checked for invalid 	      input)
+- image -> implemented as background of each tab
 
 Recommended elements:
 
-checkbox -> not used/ used radio buttons instead
-radio button -> used in menu to change background color
-background color -> used and changeable
+- checkbox -> not used/ used radio buttons instead
+- radio button -> used in menu to change background color
+- background color -> used and changeable
 
 Shortcomings:
 - Cannot split the program into separate folders due to windows admin right problems. 
@@ -28,27 +28,27 @@ Shortcomings:
 
 Vlastnosti:
 
-Stále vidite¾né menu -> implementované s TabbedPanel
-4 stránky/záloky v aplikácii majú rôzne úèely
-Tlaèidlo Exit vypína program
+- StÃ¡le viditeÂ¾nÃ© menu -> implementovanÃ© s TabbedPanel
+- 4 strÃ¡nky/zÃ¡loÅ¾ky v aplikÃ¡cii majÃº rÃ´zne ÃºÃ¨ely
+- TlaÃ¨idlo Exit vypÃ­na program
 
-Potrebné prvky:
+PotrebnÃ© prvky:
 
-label -> vyuívanı po celom programe
-button -> -||-
-text input -> pouitı na zadanie hodnoty pri kupovaní vylepšení (Vstup ošetrenı)
-image -> vyuitı ako pozadie záloiek
+- label -> vyuÅ¾Ã­vanÃ½ po celom programe
+- button -> -||-
+- text input -> pouÅ¾itÃ½ na zadanie hodnoty pri kupovanÃ­ vylepÅ¡enÃ­ (Vstup oÅ¡etrenÃ½)
+- image -> vyuÅ¾itÃ½ ako pozadie zÃ¡loÅ¾iek
 
-Doporuèené prvky:
+DoporuÃ¨enÃ© prvky:
 
-checkbox -> nepouitı/ radio button bol pouitı miesto neho
-radio button -> pouitı na zmenu farby pozadia
-background color -> pouitı a menite¾nı
+- checkbox -> nepouÅ¾itÃ½/ radio button bol pouÅ¾itÃ½ miesto neho
+- radio button -> pouÅ¾itÃ½ na zmenu farby pozadia
+- background color -> pouÅ¾itÃ½ a meniteÂ¾nÃ½
 
 Nedostatky:
-- Nemono program rozdeli na jednotlivé súbory kvôli problémom s právami vo Windowse
-- V menu vylepšení sa meno vylepšenia nesprávne zarovná napriek tomu e zarovnanie je definované vo     vlastnostiach textu
-- Menu vylepšení a ostatné èasti python kódu môu by neoptimalizované kvôli nedostatku èasu
+- NemoÅ¾no program rozdeliÂ na jednotlivÃ© sÃºbory kvÃ´li problÃ©mom s prÃ¡vami vo Windowse
+- V menu vylepÅ¡enÃ­ sa meno vylepÅ¡enia nesprÃ¡vne zarovnÃ¡ napriek tomu Å¾e zarovnanie je definovanÃ© vo     vlastnostiach textu
+- Menu vylepÅ¡enÃ­ a ostatnÃ© Ã¨asti python kÃ³du mÃ´Å¾u byÂ neoptimalizovanÃ© kvÃ´li nedostatku Ã¨asu
 
 Dodatky:
-Nebol som si úplne istı zadaním hlavne tım e èo je myslené pod slovom stránky, zobral som si to ako jednotlivé okná programu a nie zobrazovanie webovıch stránok, taktie som si nebol istı ako bola myslená implementácia image tak som jednoducho pouil attribúty source na pridanie nieko¾ko obrázkov ako textúr canvas a button.
+Nebol som si Ãºplne istÃ½ zadanÃ­m hlavne tÃ½m Å¾e Ã¨o je myslenÃ© pod slovom strÃ¡nky, zobral som si to ako jednotlivÃ© oknÃ¡ programu a nie zobrazovanie webovÃ½ch strÃ¡nok, taktieÅ¾ som si nebol istÃ½ ako bola myslenÃ¡ implementÃ¡cia image tak som jednoducho pouÅ¾il attribÃºty source na pridanie niekoÂ¾ko obrÃ¡zkov ako textÃºr canvas a button.
